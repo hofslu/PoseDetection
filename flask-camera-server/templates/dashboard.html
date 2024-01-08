@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Dashboard</title>
+    <style>
+      #camera1,
+      #camera2 {
+        width: 40%;
+        height: auto;
+        max-height: calc((100vh)+100px / 2);
+      }
+    </style>
+    <script>
+      function rotateImage(id) {
+        var img = document.getElementById(id);
+        var currentDeg = img.getAttribute("data-deg") || 0;
+        var newDeg = (parseInt(currentDeg) + 90) % 360;
+        img.style.transform = "rotate(" + newDeg + "deg)";
+        img.setAttribute("data-deg", newDeg);
+      }
+    </script>
+  </head>
+  <body>
+    <h1>Camera Dashboard</h1>
+    <div class="container">
+      <div>
+        <img id="camera1" src="/camera/1/stream" />
+        <button onclick="rotateImage('camera1')">Rotate Camera 1</button>
+      </div>
+      <div>
+        <img id="camera2" src="/camera/2/stream" />
+        <button onclick="rotateImage('camera2')">Rotate Camera 2</button>
+      </div>
+    </div>
+  </body>
+</html>
