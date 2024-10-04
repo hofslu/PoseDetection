@@ -1,5 +1,7 @@
 import bpy
-import mathutils as math
+from datetime import datetime
+import math
+import mathutils
 import json
 import os
 
@@ -82,7 +84,9 @@ def main():
         camera_parameters.append(params)
 
     # Save parameters to a JSON file
-    output_path = os.path.join(bpy.path.abspath("//"), "camera_parameters.json")
+    base_path = "/Users/holu/Documents/tinkering/PoseDetection/simulator/experiments/camera-example-parameters"
+    current_time = datetime.now().strftime("%Y%m%d%H%M%S")
+    output_path = os.path.join(base_path, f"camera_parameters_{current_time}.json")
     with open(output_path, 'w') as f:
         json.dump(camera_parameters, f, indent=4)
 
@@ -90,3 +94,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+    exit() # needed for blender to close
