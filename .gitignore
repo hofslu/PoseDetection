@@ -1,7 +1,7 @@
 # Directories
 /blender_data/
 
-
+.DS_Store
 
 
 # Byte-compiled / optimized / DLL files
