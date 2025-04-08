@@ -3,12 +3,18 @@ import pygame
 import requests
 import cv2
 import mediapipe as mp
+import dotenv
 from collections import deque
 import json
 import numpy as np
 import time
 import os
 from io import BytesIO
+
+# Load environment variables from .env file
+dotenv.load_dotenv()
+
+WHATSAPP_API_KEY = os.getenv("WHATSAPP_API_KEY")
 
 
 # 🧠 Initialize MediaPipe Pose
@@ -78,6 +84,9 @@ if os.path.exists(up_pose_path):
     up_pose_data = np.load(up_pose_path)
 if os.path.exists(down_pose_path):
     down_pose_data = np.load(down_pose_path)
+if os.path.exists(rep_log_file):
+    with open(rep_log_file, "r") as f:
+        rep_log = json.load(f)
 
 
 # 🌪️ MJPEG stream fetcher
@@ -352,8 +361,6 @@ while running:
                 draw_stats_text(stats_window, list(frame_dts), "Frame dt", 240, in_ms=True)
                 draw_stats_text(stats_window, list(similarities), "Similarity", 340, in_ms=False)
 
-
-
                 pygame.display.update()
 
 
@@ -426,3 +433,27 @@ while running:
 
 
 pygame.quit()
+stream.close()
+
+print("📧 Send pushup_log.json to pythonanywhere/calender instance.")
+try:
+    if pushup_count > 0:
+        print("📱 Sending WhatsApp message...")
+        url = "https://holu.pythonanywhere.com/e253e0ac-9a2b-45b7-9d29-91bd1566676d"  # Replace with the actual URL
+        headers = {
+            "Content-Type": "application/json",
+            "X-API-Key": WHATSAPP_API_KEY
+        }
+        payload = {
+            "msg": "Hello Lukas, you're awesome!"
+        }
+
+        response = requests.post(url, json=payload, headers=headers)
+        if response.status_code == 200:
+            print("✅ Message sent successfully!")
+        else:
+            print(f"❌ Failed to send message: {response.status_code} - {response.text}")
+except Exception as e:
+    print(f"❌ Error sending message: {e}")
+finally:
+    print("👋 Goodbye!")

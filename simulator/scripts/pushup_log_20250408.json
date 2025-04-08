@@ -1,17 +1,352 @@
 [
   {
-    "timestamp": "2025-04-08T00:10:42.256827",
-    "similarity_up": 93.56,
-    "similarity_down": 71.99
+    "timestamp": "2025-04-08T00:45:03.160016",
+    "similarity_up": 91.0,
+    "similarity_down": 73.2
   },
   {
-    "timestamp": "2025-04-08T00:10:46.711003",
-    "similarity_up": 89.29,
-    "similarity_down": 76.12
+    "timestamp": "2025-04-08T00:45:06.900484",
+    "similarity_up": 88.75,
+    "similarity_down": 74.88
   },
   {
-    "timestamp": "2025-04-08T00:10:48.627211",
-    "similarity_up": 91.54,
-    "similarity_down": 72.2
+    "timestamp": "2025-04-08T00:45:08.157538",
+    "similarity_up": 88.44,
+    "similarity_down": 76.25
+  },
+  {
+    "timestamp": "2025-04-08T00:45:09.412688",
+    "similarity_up": 91.72,
+    "similarity_down": 71.05
+  },
+  {
+    "timestamp": "2025-04-08T00:45:10.112395",
+    "similarity_up": 87.67,
+    "similarity_down": 76.18
+  },
+  {
+    "timestamp": "2025-04-08T00:45:11.214233",
+    "similarity_up": 86.32,
+    "similarity_down": 78.45
+  },
+  {
+    "timestamp": "2025-04-08T00:45:13.055268",
+    "similarity_up": 87.28,
+    "similarity_down": 75.92
+  },
+  {
+    "timestamp": "2025-04-08T00:45:14.044775",
+    "similarity_up": 86.71,
+    "similarity_down": 75.87
+  },
+  {
+    "timestamp": "2025-04-08T00:45:15.083255",
+    "similarity_up": 85.79,
+    "similarity_down": 78.9
+  },
+  {
+    "timestamp": "2025-04-08T00:45:16.118599",
+    "similarity_up": 86.71,
+    "similarity_down": 78.57
+  },
+  {
+    "timestamp": "2025-04-08T00:46:42.846419",
+    "similarity_up": 87.07,
+    "similarity_down": 77.37
+  },
+  {
+    "timestamp": "2025-04-08T00:46:45.698384",
+    "similarity_up": 89.67,
+    "similarity_down": 74.15
+  },
+  {
+    "timestamp": "2025-04-08T00:46:47.001992",
+    "similarity_up": 85.3,
+    "similarity_down": 80.53
+  },
+  {
+    "timestamp": "2025-04-08T00:46:48.068491",
+    "similarity_up": 90.34,
+    "similarity_down": 74.68
+  },
+  {
+    "timestamp": "2025-04-08T00:46:49.151018",
+    "similarity_up": 86.33,
+    "similarity_down": 79.22
+  },
+  {
+    "timestamp": "2025-04-08T00:46:50.168530",
+    "similarity_up": 88.17,
+    "similarity_down": 78.1
+  },
+  {
+    "timestamp": "2025-04-08T00:46:51.384704",
+    "similarity_up": 88.73,
+    "similarity_down": 75.94
+  },
+  {
+    "timestamp": "2025-04-08T00:46:51.991615",
+    "similarity_up": 86.09,
+    "similarity_down": 81.32
+  },
+  {
+    "timestamp": "2025-04-08T00:46:53.205097",
+    "similarity_up": 86.85,
+    "similarity_down": 75.4
+  },
+  {
+    "timestamp": "2025-04-08T00:46:54.151577",
+    "similarity_up": 91.29,
+    "similarity_down": 73.6
+  },
+  {
+    "timestamp": "2025-04-08T00:46:55.142418",
+    "similarity_up": 86.32,
+    "similarity_down": 78.66
+  },
+  {
+    "timestamp": "2025-04-08T01:27:16.472786",
+    "similarity_up": 88.98,
+    "similarity_down": 76.19
+  },
+  {
+    "timestamp": "2025-04-08T01:27:17.609212",
+    "similarity_up": 89.1,
+    "similarity_down": 72.71
+  },
+  {
+    "timestamp": "2025-04-08T01:27:18.528359",
+    "similarity_up": 89.17,
+    "similarity_down": 74.71
+  },
+  {
+    "timestamp": "2025-04-08T01:27:19.521790",
+    "similarity_up": 85.5,
+    "similarity_down": 81.89
+  },
+  {
+    "timestamp": "2025-04-08T01:27:20.268916",
+    "similarity_up": 89.49,
+    "similarity_down": 74.26
+  },
+  {
+    "timestamp": "2025-04-08T01:27:20.527285",
+    "similarity_up": 88.61,
+    "similarity_down": 77.7
+  },
+  {
+    "timestamp": "2025-04-08T01:27:21.195496",
+    "similarity_up": 88.97,
+    "similarity_down": 76.43
+  },
+  {
+    "timestamp": "2025-04-08T01:27:22.091479",
+    "similarity_up": 86.74,
+    "similarity_down": 77.75
+  },
+  {
+    "timestamp": "2025-04-08T01:27:22.941629",
+    "similarity_up": 86.42,
+    "similarity_down": 79.07
+  },
+  {
+    "timestamp": "2025-04-08T01:27:24.103352",
+    "similarity_up": 86.87,
+    "similarity_down": 76.66
+  },
+  {
+    "timestamp": "2025-04-08T01:27:24.594670",
+    "similarity_up": 87.7,
+    "similarity_down": 77.86
+  },
+  {
+    "timestamp": "2025-04-08T01:27:25.573604",
+    "similarity_up": 85.92,
+    "similarity_down": 78.36
+  },
+  {
+    "timestamp": "2025-04-08T01:27:25.896663",
+    "similarity_up": 90.12,
+    "similarity_down": 74.28
+  },
+  {
+    "timestamp": "2025-04-08T01:27:26.394214",
+    "similarity_up": 85.98,
+    "similarity_down": 80.15
+  },
+  {
+    "timestamp": "2025-04-08T01:27:27.390286",
+    "similarity_up": 89.24,
+    "similarity_down": 72.42
+  },
+  {
+    "timestamp": "2025-04-08T01:27:28.242769",
+    "similarity_up": 86.23,
+    "similarity_down": 76.75
+  },
+  {
+    "timestamp": "2025-04-08T01:27:29.448885",
+    "similarity_up": 85.38,
+    "similarity_down": 80.86
+  },
+  {
+    "timestamp": "2025-04-08T01:27:30.247981",
+    "similarity_up": 87.76,
+    "similarity_down": 77.27
+  },
+  {
+    "timestamp": "2025-04-08T01:27:31.009158",
+    "similarity_up": 87.59,
+    "similarity_down": 79.49
+  },
+  {
+    "timestamp": "2025-04-08T01:27:31.992118",
+    "similarity_up": 91.69,
+    "similarity_down": 72.19
+  },
+  {
+    "timestamp": "2025-04-08T01:27:32.581684",
+    "similarity_up": 86.69,
+    "similarity_down": 78.85
+  },
+  {
+    "timestamp": "2025-04-08T01:27:33.796727",
+    "similarity_up": 89.5,
+    "similarity_down": 71.91
+  },
+  {
+    "timestamp": "2025-04-08T01:27:37.608673",
+    "similarity_up": 89.95,
+    "similarity_down": 76.07
+  },
+  {
+    "timestamp": "2025-04-08T01:27:38.257898",
+    "similarity_up": 86.94,
+    "similarity_down": 78.32
+  },
+  {
+    "timestamp": "2025-04-08T01:27:38.540204",
+    "similarity_up": 86.48,
+    "similarity_down": 80.9
+  },
+  {
+    "timestamp": "2025-04-08T01:27:40.298544",
+    "similarity_up": 90.19,
+    "similarity_down": 75.06
+  },
+  {
+    "timestamp": "2025-04-08T01:27:40.643728",
+    "similarity_up": 87.12,
+    "similarity_down": 79.0
+  },
+  {
+    "timestamp": "2025-04-08T01:52:46.906804",
+    "similarity_up": 88.16,
+    "similarity_down": 74.82
+  },
+  {
+    "timestamp": "2025-04-08T01:52:47.282601",
+    "similarity_up": 87.56,
+    "similarity_down": 79.83
+  },
+  {
+    "timestamp": "2025-04-08T01:52:47.903388",
+    "similarity_up": 90.62,
+    "similarity_down": 71.88
+  },
+  {
+    "timestamp": "2025-04-08T01:52:49.237751",
+    "similarity_up": 89.93,
+    "similarity_down": 72.29
+  },
+  {
+    "timestamp": "2025-04-08T01:52:49.967346",
+    "similarity_up": 90.65,
+    "similarity_down": 72.49
+  },
+  {
+    "timestamp": "2025-04-08T01:52:50.890627",
+    "similarity_up": 90.32,
+    "similarity_down": 74.65
+  },
+  {
+    "timestamp": "2025-04-08T01:52:51.988150",
+    "similarity_up": 90.17,
+    "similarity_down": 74.0
+  },
+  {
+    "timestamp": "2025-04-08T01:52:52.880205",
+    "similarity_up": 89.32,
+    "similarity_down": 75.2
+  },
+  {
+    "timestamp": "2025-04-08T01:52:53.808088",
+    "similarity_up": 85.46,
+    "similarity_down": 80.0
+  },
+  {
+    "timestamp": "2025-04-08T01:52:54.901288",
+    "similarity_up": 88.49,
+    "similarity_down": 78.05
+  },
+  {
+    "timestamp": "2025-04-08T02:21:19.357051",
+    "similarity_up": 85.7,
+    "similarity_down": 81.47
+  },
+  {
+    "timestamp": "2025-04-08T02:21:21.411082",
+    "similarity_up": 90.0,
+    "similarity_down": 74.54
+  },
+  {
+    "timestamp": "2025-04-08T02:21:22.543710",
+    "similarity_up": 89.26,
+    "similarity_down": 74.39
+  },
+  {
+    "timestamp": "2025-04-08T02:21:22.662405",
+    "similarity_up": 91.45,
+    "similarity_down": 73.83
+  },
+  {
+    "timestamp": "2025-04-08T02:21:23.498074",
+    "similarity_up": 89.25,
+    "similarity_down": 75.68
+  },
+  {
+    "timestamp": "2025-04-08T02:21:23.684759",
+    "similarity_up": 91.4,
+    "similarity_down": 73.54
+  },
+  {
+    "timestamp": "2025-04-08T02:21:23.972683",
+    "similarity_up": 87.67,
+    "similarity_down": 79.86
+  },
+  {
+    "timestamp": "2025-04-08T02:21:24.569439",
+    "similarity_up": 89.08,
+    "similarity_down": 74.14
+  },
+  {
+    "timestamp": "2025-04-08T02:23:37.318169",
+    "similarity_up": 85.29,
+    "similarity_down": 81.1
+  },
+  {
+    "timestamp": "2025-04-08T02:23:39.868747",
+    "similarity_up": 88.38,
+    "similarity_down": 77.46
+  },
+  {
+    "timestamp": "2025-04-08T02:23:42.173310",
+    "similarity_up": 89.54,
+    "similarity_down": 76.9
+  },
+  {
+    "timestamp": "2025-04-08T02:23:42.464211",
+    "similarity_up": 87.71,
+    "similarity_down": 78.67
   }
 ]
