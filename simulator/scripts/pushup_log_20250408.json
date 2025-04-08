@@ -348,5 +348,30 @@
     "timestamp": "2025-04-08T02:23:42.464211",
     "similarity_up": 87.71,
     "similarity_down": 78.67
+  },
+  {
+    "timestamp": "2025-04-08T02:28:13.329263",
+    "similarity_up": 86.1,
+    "similarity_down": 77.31
+  },
+  {
+    "timestamp": "2025-04-08T02:28:14.928451",
+    "similarity_up": 91.3,
+    "similarity_down": 73.5
+  },
+  {
+    "timestamp": "2025-04-08T02:28:15.777081",
+    "similarity_up": 89.15,
+    "similarity_down": 71.36
+  },
+  {
+    "timestamp": "2025-04-08T02:28:20.648914",
+    "similarity_up": 90.37,
+    "similarity_down": 71.46
+  },
+  {
+    "timestamp": "2025-04-08T02:28:22.758728",
+    "similarity_up": 87.66,
+    "similarity_down": 72.86
   }
 ]

@@ -445,7 +445,7 @@ try:
             "X-API-Key": WHATSAPP_API_KEY
         }
         payload = {
-            "msg": "Hello Lukas, you're awesome!"
+            "msg": f"💪 Push-Ups: {pushup_count}",
         }
 
         response = requests.post(url, json=payload, headers=headers)
