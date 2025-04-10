@@ -29,7 +29,8 @@ face_detection_enabled = False
 pose_detection_enabled = True
 
 # 🌐 ESP32-CAM stream URL
-ESP32_URL = 'http://10.1.1.166/stream'
+# ESP32_URL = 'http://10.1.1.166/stream'
+ESP32_URL = 'http://10.1.1.215/stream'
 show_stats = False
 stats_window = None
 
@@ -40,7 +41,7 @@ last_pose_state = None  # 'up', 'down', or None
 pose_capture_countdown = 0
 capture_target = None  # 'up' or 'down'
 capture_start_time = 0
-
+last_detection = None
 
 
 # History buffers (10 sec assuming 30 fps ≈ 300 samples)
@@ -255,22 +256,30 @@ while running:
                     if pose_similarity_down > threshold and last_pose_state != 'down':
                         last_pose_state = 'down'
                     elif pose_similarity_up > threshold and last_pose_state == 'down':
-                        pushup_count += 1
-                        last_pose_state = 'up'
-                        print(f"💪 Push-Up Count: {pushup_count}")
-                        if pushup_count % 5 == 0:
-                            pygame.mixer.Sound.play(power_up_sound)
-                        else:
-                            pygame.mixer.Sound.play(coin_sound)
+                        if last_detection is None or time.time() - last_detection > 1:
+                            last_detection = time.time()
 
-                        rep_entry = {
-                            "timestamp": datetime.now().isoformat(),
-                            "similarity_up": round(pose_similarity_up, 2),
-                            "similarity_down": round(pose_similarity_down, 2),
-                        }
-                        rep_log.append(rep_entry)
-                        with open(rep_log_file, "w") as f:
-                            json.dump(rep_log, f, indent=2)
+                            # Push-up completed
+                            pushup_count += 1
+                            last_pose_state = 'up'
+                            print(f"💪 Push-Up Count: {pushup_count}")
+
+                            # Play sound based on milestone
+                            sound_to_play = power_up_sound if pushup_count % 5 == 0 else coin_sound
+                            pygame.mixer.Sound.play(sound_to_play)
+
+                            # Log the push-up details
+                            rep_entry = {
+                                "timestamp": datetime.now().isoformat(),
+                                "similarity_up": round(pose_similarity_up, 2),
+                                "similarity_down": round(pose_similarity_down, 2),
+                                "pushup_count": pushup_count
+                            }
+                            rep_log.append(rep_entry)
+
+                            # Save to file
+                            with open(rep_log_file, "w") as f:
+                                json.dump(rep_log, f, indent=2)
             comparison_time = time.time() - comparison_time_start
 
 
