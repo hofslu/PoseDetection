@@ -1,5 +1,6 @@
 # Directories
 /blender_data/
+/venv
 
 .DS_Store
 
