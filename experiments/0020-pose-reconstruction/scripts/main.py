@@ -6,6 +6,7 @@ import cv2
 import numpy as np
 import requests
 import dotenv
+import threading
 from io import BytesIO
 from OpenGL.GL import *
 from OpenGL.GLU import *
@@ -24,25 +25,22 @@ clock = pygame.time.Clock()
 def init_opengl():
     glEnable(GL_DEPTH_TEST)
     glEnable(GL_TEXTURE_2D)
-    glDisable(GL_LIGHTING)  # ✅ Disable lighting to avoid tint
+    glDisable(GL_LIGHTING)
     glClearColor(0.1, 0.1, 0.1, 1)
 
 angle_x, angle_y = 0, 0
 
 # 🔄 Reusable texture updater
-# ✅ Flip the frame itself for correct orientation
 def update_texture(tex_id, frame):
     frame = cv2.resize(frame, (640, 480))
-    # frame = cv2.flip(frame, 1)
     frame = cv2.flip(frame, 0)
     frame_data = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB).tobytes()
     glBindTexture(GL_TEXTURE_2D, tex_id)
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR)
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR)
-    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, 640, 480, 0, GL_RGB, GL_UNSIGNED_BYTE, frame_data)
+    glTexSubImage2D(GL_TEXTURE_2D, 0, 0, 0, 640, 480, GL_RGB, GL_UNSIGNED_BYTE, frame_data)
 
-# 🧱 Draw textured quad at a given screen location
-# 👇 Coordinates no longer flipped
+# 🧱 Draw textured quad
 
 def draw_textured_quad(tex_id, x, width):
     glBindTexture(GL_TEXTURE_2D, tex_id)
@@ -54,7 +52,7 @@ def draw_textured_quad(tex_id, x, width):
     glTexCoord2f(0, 0); glVertex2f(x, 480)
     glEnd()
 
-# 🟢 Center 3D View
+# 🟢 Center 3D Sphere
 
 def draw_center_sphere():
     glBindTexture(GL_TEXTURE_2D, 0)
@@ -66,47 +64,53 @@ def draw_center_sphere():
     gluDeleteQuadric(quad)
     glPopMatrix()
 
-def get_mjpeg_frame(url, buffer):
-    buffer += url.raw.read(1024)
-    start = buffer.find(b'\xff\xd8')
-    end = buffer.find(b'\xff\xd9')
-    if start != -1 and end != -1:
-        jpg = buffer[start:end + 2]
-        buffer = buffer[end + 2:]
-        img = cv2.imdecode(np.frombuffer(jpg, dtype=np.uint8), cv2.IMREAD_COLOR)
-        return img, buffer
-    return None, buffer
+# ⚡ Live Frame Grabbers
 
-stream1 = requests.get(ESP32_CAM1_URL, stream=True)
-stream2 = requests.get(ESP32_CAM2_URL, stream=True)
-buffer1 = b""
-buffer2 = b""
+def mjpeg_stream_reader(url, frame_container):
+    buffer = b""
+    stream = requests.get(url, stream=True)
+    while True:
+        buffer += stream.raw.read(8192)
+        start = buffer.find(b'\xff\xd8')
+        end = buffer.find(b'\xff\xd9')
+        if start != -1 and end != -1:
+            jpg = buffer[start:end + 2]
+            buffer = buffer[end + 2:]
+            img = cv2.imdecode(np.frombuffer(jpg, dtype=np.uint8), cv2.IMREAD_COLOR)
+            if img is not None:
+                frame_container["frame"] = img
 
 init_opengl()
-tex1 = glGenTextures(1)
-tex2 = glGenTextures(1)
-running = True
+tex1, tex2 = glGenTextures(2)
 
+# Init with dummy texture
+for tex in [tex1, tex2]:
+    glBindTexture(GL_TEXTURE_2D, tex)
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, 640, 480, 0, GL_RGB, GL_UNSIGNED_BYTE, None)
+
+frame1 = {"frame": None}
+frame2 = {"frame": None}
+threading.Thread(target=mjpeg_stream_reader, args=(ESP32_CAM1_URL, frame1), daemon=True).start()
+threading.Thread(target=mjpeg_stream_reader, args=(ESP32_CAM2_URL, frame2), daemon=True).start()
+
+running = True
 while running:
     for event in pygame.event.get():
         if event.type == QUIT:
             running = False
-        if event.type == MOUSEMOTION and pygame.mouse.get_pressed()[0]:
+        elif event.type == MOUSEMOTION and pygame.mouse.get_pressed()[0]:
             dx, dy = event.rel
             angle_x += dx * 0.5
             angle_y += dy * 0.5
 
-    frame1, buffer1 = get_mjpeg_frame(stream1, buffer1)
-    frame2, buffer2 = get_mjpeg_frame(stream2, buffer2)
-
-    if frame1 is not None:
-        update_texture(tex1, frame1)
-    if frame2 is not None:
-        update_texture(tex2, frame2)
+    if frame1["frame"] is not None:
+        update_texture(tex1, frame1["frame"])
+    if frame2["frame"] is not None:
+        update_texture(tex2, frame2["frame"])
 
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT)
 
-    # --- Left Camera ---
+    # --- Left ---
     glViewport(0, 0, 640, 480)
     glMatrixMode(GL_PROJECTION)
     glLoadIdentity()
@@ -115,11 +119,11 @@ while running:
     glLoadIdentity()
     draw_textured_quad(tex1, 0, 640)
 
-    # --- Center 3D ---
+    # --- Center ---
     glViewport(640, 0, 640, 480)
     glMatrixMode(GL_PROJECTION)
     glLoadIdentity()
-    gluPerspective(45, (640 / 480), 0.1, 1000.0)
+    gluPerspective(45, 640/480, 0.1, 1000)
     glMatrixMode(GL_MODELVIEW)
     glLoadIdentity()
     glTranslatef(0, 0, -10)
@@ -127,7 +131,7 @@ while running:
     glRotatef(angle_x, 0, 1, 0)
     draw_center_sphere()
 
-    # --- Right Camera ---
+    # --- Right ---
     glViewport(1280, 0, 640, 480)
     glMatrixMode(GL_PROJECTION)
     glLoadIdentity()
@@ -137,6 +141,6 @@ while running:
     draw_textured_quad(tex2, 0, 640)
 
     pygame.display.flip()
-    clock.tick(30)
+    clock.tick(60)
 
 pygame.quit()
